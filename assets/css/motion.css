@@ -69,7 +69,8 @@
 
 /* ---- Floating hearts in the hero background ---------------------------- */
 .hero-hearts { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-.hero > .wrap { position: relative; z-index: 1; }
+.page-hero { position: relative; overflow: hidden; }
+.hero > .wrap, .page-hero > .wrap { position: relative; z-index: 1; }
 .hero-hearts span {
   position: absolute; bottom: -30px; color: var(--gold); opacity: 0;
   font-size: var(--s, 14px); left: var(--x, 50%);
@@ -78,9 +79,9 @@
 @keyframes float-up {
   0%   { transform: translate(0, 0) rotate(-8deg); opacity: 0; }
   10%  { opacity: var(--o, .18); }
-  50%  { transform: translate(var(--drift, 20px), -45vh) rotate(8deg); }
+  50%  { transform: translate(var(--drift, 20px), calc(var(--rise, 90vh) / -2)) rotate(8deg); }
   90%  { opacity: var(--o, .18); }
-  100% { transform: translate(0, -90vh) rotate(-6deg); opacity: 0; }
+  100% { transform: translate(0, calc(var(--rise, 90vh) * -1)) rotate(-6deg); opacity: 0; }
 }
 
 /* ---- Scroll reveal ------------------------------------------------------ */

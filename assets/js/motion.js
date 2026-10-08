@@ -96,26 +96,30 @@
 
   if (reduce) return; // Everything below is purely decorative motion.
 
-  // ---- Floating hearts drifting up behind the hero ------------------------
+  // ---- Floating hearts drifting up behind the top section of every page ---
   const hero = document.querySelector(".hero");
-  if (hero) {
+  const topSection = hero || document.querySelector(".page-hero");
+  if (topSection) {
     const layer = document.createElement("div");
     layer.className = "hero-hearts";
     layer.setAttribute("aria-hidden", "true");
-    const count = window.innerWidth < 700 ? 5 : 9;
+    const small = window.innerWidth < 700;
+    const count = hero ? (small ? 5 : 9) : (small ? 4 : 7);
+    const rise = topSection.offsetHeight + 60; // travel the full height of this section
     for (let i = 0; i < count; i++) {
       const h = document.createElement("span");
       h.textContent = "♥";
       const r = (min, max) => (Math.random() * (max - min) + min).toFixed(2);
       h.style.setProperty("--x", `${r(2, 96)}%`);
       h.style.setProperty("--s", `${r(9, 18)}px`);
-      h.style.setProperty("--d", `${r(14, 24)}s`);
+      h.style.setProperty("--d", hero ? `${r(14, 24)}s` : `${r(10, 16)}s`);
       h.style.setProperty("--delay", `${r(-20, 2)}s`);
       h.style.setProperty("--drift", `${r(-40, 40)}px`);
       h.style.setProperty("--o", r(0.1, 0.22));
+      h.style.setProperty("--rise", `${rise}px`);
       layer.append(h);
     }
-    hero.prepend(layer);
+    topSection.prepend(layer);
   }
 
   if (!finePointer) return; // Cursor effects only where there's a mouse.
