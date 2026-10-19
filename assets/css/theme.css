@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Safe Haven — light mode + the sun/moon switch in the header
+   Dark is the default look. Visitors who pick light get it on every page
+   (saved in their browser). The header, footer and the photo call-to-action
+   band stay dark in both modes so the logo and brand framing don't change.
+   ========================================================================== */
+
+/* ---- Light palette ----------------------------------------------------- */
+[data-theme="light"] {
+  --ink: #fbf7f0;      /* page background: warm ivory */
+  --ink-2: #f3ece1;    /* alternate bands */
+  --ink-3: #ffffff;    /* cards and panels */
+  --text: #241a2e;     /* deep plum text */
+  --muted: #574d5e;
+  --gold: #7b5313;     /* darker gold so small text still reads on light backgrounds */
+  --gold-2: #6a470d;
+  --line: rgba(138, 94, 23, .3);
+  color-scheme: light;
+}
+:root { color-scheme: dark; }
+
+/* Sections that keep the dark look in both modes */
+[data-theme="light"] :is(.site-header, .site-footer, .cta, .hero-photo) {
+  --ink: #0d0b0f; --ink-2: #16121a; --ink-3: #1e1824;
+  --text: #f3eee6; --muted: #c9c0b4;
+  --gold: #d6a84e; --gold-2: #f0cf85;
+  --line: rgba(214, 168, 78, .35);
+  color: var(--text);
+}
+
+/* ---- Light-mode adjustments for hard-coded dark colors ------------------ */
+[data-theme="light"] .hero { background: radial-gradient(ellipse at 75% 40%, #f1dfc2 0%, #f7efe2 45%, var(--ink) 80%); }
+[data-theme="light"] .hero .swoosh path:first-child { fill: var(--ink-2); }
+[data-theme="light"] .hero-photo img { box-shadow: 0 30px 60px rgba(60, 40, 20, .28); }
+[data-theme="light"] .page-hero { background: radial-gradient(ellipse at 80% 20%, rgba(122, 43, 184, .14), transparent 60%), var(--ink); }
+
+[data-theme="light"] .btn-outline { background: rgba(255, 255, 255, .7); }
+[data-theme="light"] .btn-outline:hover { background: rgba(138, 94, 23, .1); }
+/* ...but outline buttons inside the dark bands keep their dark look */
+[data-theme="light"] :is(.site-header, .site-footer, .cta) .btn-outline { background: rgba(0, 0, 0, .25); }
+[data-theme="light"] :is(.site-header, .site-footer, .cta) .btn-outline:hover { background: rgba(214, 168, 78, .12); }
+
+[data-theme="light"] .card,
+[data-theme="light"] .panel,
+[data-theme="light"] .price-card { box-shadow: 0 10px 28px rgba(60, 40, 20, .08); }
+[data-theme="light"] .panel:hover,
+[data-theme="light"] .card:hover { box-shadow: 0 18px 40px rgba(60, 40, 20, .18), 0 0 0 1px var(--gold); }
+[data-theme="light"] .photo-frame img,
+[data-theme="light"] .why-photo img { box-shadow: 0 20px 50px rgba(60, 40, 20, .22); }
+
+[data-theme="light"] .mission { background: linear-gradient(135deg, rgba(94, 27, 145, .12), rgba(94, 27, 145, .03)); }
+[data-theme="light"] .price-option { background: rgba(94, 27, 145, .07); border-color: var(--line); }
+[data-theme="light"] .rate-table th,
+[data-theme="light"] .rate-table td,
+[data-theme="light"] .rate-table tr { border-color: var(--line); }
+
+[data-theme="light"] .form input,
+[data-theme="light"] .form select,
+[data-theme="light"] .form textarea { background: #fff; border-color: rgba(138, 94, 23, .35); }
+
+/* Back-to-top button stays dark with bright gold in both modes */
+[data-theme="light"] .to-top { color: #d6a84e; border-color: #d6a84e; }
+
+/* Floating hearts: a touch stronger on light so they still show */
+[data-theme="light"] .hero-hearts span { text-shadow: 0 0 10px rgba(214, 168, 78, .45); }
+
+/* ---- The switch -------------------------------------------------------- */
+.theme-toggle {
+  width: 40px; height: 40px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; cursor: pointer;
+  background: transparent; color: var(--gold);
+  border: 1px solid var(--line); font-size: 1.15rem; line-height: 1;
+  transition: background .25s, transform .35s cubic-bezier(.22, .61, .36, 1), border-color .25s;
+}
+.theme-toggle:hover { background: rgba(214, 168, 78, .14); border-color: var(--gold); transform: rotate(-20deg) scale(1.08); }
+.theme-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+
+/* Smooth fade when switching (not on first paint) */
+.theme-anim, .theme-anim * { transition: background-color .45s ease, color .45s ease, border-color .45s ease !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-anim, .theme-anim * { transition: none !important; }
+}
