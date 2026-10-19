@@ -34,7 +34,7 @@
       else el.dataset.reveal = "";
       if (mode === "group") {
         const i = Array.prototype.indexOf.call(el.parentElement.children, el);
-        el.style.setProperty("--stagger", `${Math.min(i, 5) * 0.09}s`);
+        el.style.setProperty("--stagger", `${Math.min(i, 5) * 0.13}s`);
       }
     });
   });
@@ -104,18 +104,18 @@
     layer.className = "hero-hearts";
     layer.setAttribute("aria-hidden", "true");
     const small = window.innerWidth < 700;
-    const count = hero ? (small ? 5 : 9) : (small ? 4 : 7);
+    const count = hero ? (small ? 9 : 16) : (small ? 7 : 12);
     const rise = topSection.offsetHeight + 60; // travel the full height of this section
     for (let i = 0; i < count; i++) {
       const h = document.createElement("span");
       h.textContent = "♥";
       const r = (min, max) => (Math.random() * (max - min) + min).toFixed(2);
       h.style.setProperty("--x", `${r(2, 96)}%`);
-      h.style.setProperty("--s", `${r(9, 18)}px`);
-      h.style.setProperty("--d", hero ? `${r(14, 24)}s` : `${r(10, 16)}s`);
+      h.style.setProperty("--s", `${r(14, 30)}px`);
+      h.style.setProperty("--d", hero ? `${r(11, 19)}s` : `${r(9, 14)}s`);
       h.style.setProperty("--delay", `${r(-20, 2)}s`);
-      h.style.setProperty("--drift", `${r(-40, 40)}px`);
-      h.style.setProperty("--o", r(0.1, 0.22));
+      h.style.setProperty("--drift", `${r(-70, 70)}px`);
+      h.style.setProperty("--o", r(0.3, 0.6));
       h.style.setProperty("--rise", `${rise}px`);
       layer.append(h);
     }
@@ -132,8 +132,8 @@
       const b = photo.getBoundingClientRect();
       const dx = (e.clientX - (b.left + b.width / 2)) / window.innerWidth;
       const dy = (e.clientY - (b.top + b.height / 2)) / window.innerHeight;
-      img.style.setProperty("--ry", `${(dx * 8).toFixed(2)}deg`);
-      img.style.setProperty("--rx", `${(-dy * 6).toFixed(2)}deg`);
+      img.style.setProperty("--ry", `${(dx * 14).toFixed(2)}deg`);
+      img.style.setProperty("--rx", `${(-dy * 10).toFixed(2)}deg`);
     });
     hero.addEventListener("pointerleave", () => {
       img.style.setProperty("--ry", "0deg");
@@ -160,13 +160,13 @@
     if (!btn) return;
     const x = e.clientX || btn.getBoundingClientRect().left + btn.offsetWidth / 2;
     const y = e.clientY || btn.getBoundingClientRect().top + btn.offsetHeight / 2;
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 10; i++) {
       const h = document.createElement("span");
       h.className = "heart-pop";
       h.textContent = "♥";
       h.setAttribute("aria-hidden", "true");
-      const angle = (Math.PI * 2 * i) / 6 + Math.random() * 0.6;
-      const dist = 34 + Math.random() * 22;
+      const angle = (Math.PI * 2 * i) / 10 + Math.random() * 0.5;
+      const dist = 55 + Math.random() * 40;
       h.style.left = `${x}px`;
       h.style.top = `${y}px`;
       h.style.setProperty("--dx", `${Math.cos(angle) * dist}px`);
@@ -174,7 +174,7 @@
       h.style.setProperty("--r", `${(Math.random() * 60 - 30).toFixed(0)}deg`);
       h.style.color = i % 2 ? "#d6a84e" : "#b26ee0";
       document.body.append(h);
-      setTimeout(() => h.remove(), 950);
+      setTimeout(() => h.remove(), 1150);
     }
   });
 })();
