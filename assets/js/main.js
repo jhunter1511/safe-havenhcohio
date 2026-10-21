@@ -13,14 +13,18 @@ document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new D
 
 // Forms: submit to Web3Forms via fetch, show inline status.
 // Only report success when Web3Forms confirms it ({"success": true}).
-// Fields are sent as JSON: blank fields are left out so the email stays short,
-// and checkbox groups that share a name (e.g. "Days available") are joined.
-function formToJSON(form) {
-  const out = {};
+// Fields are sent as regular form data (NOT JSON: Web3Forms answered JSON posts
+// with "success" but never delivered the emails). Blank fields are left out so the
+// email stays short, and checkbox groups that share a name (e.g. "Days available")
+// are joined into one line.
+function cleanFormData(form) {
+  const merged = new Map();
   for (const [key, value] of new FormData(form)) {
     if (typeof value !== "string" || value.trim() === "") continue;
-    out[key] = key in out ? `${out[key]}, ${value}` : value;
+    merged.set(key, merged.has(key) ? `${merged.get(key)}, ${value}` : value);
   }
+  const out = new FormData();
+  for (const [key, value] of merged) out.append(key, value);
   return out;
 }
 
@@ -38,8 +42,8 @@ document.querySelectorAll("form[data-ajax]").forEach((form) => {
     try {
       const res = await fetch(form.action, {
         method: "POST",
-        body: JSON.stringify(formToJSON(form)),
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: cleanFormData(form),
+        headers: { Accept: "application/json" },
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.success) throw new Error(data.message);
