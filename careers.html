@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/motion.css">
   <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/apply.css">
   <script>document.documentElement.classList.add("js");try{if(localStorage.getItem("sh-theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
 </head>
 <body>
@@ -88,22 +89,231 @@
         </ul>
       </div>
       <div class="panel">
-        <h3>Apply Now</h3>
-        <form class="form" action="https://api.web3forms.com/submit" method="POST" data-ajax>
-          <input type="hidden" name="access_key" value="9c87d45f-20a8-4b9b-949e-5074ef9c48b7">
-          <input type="hidden" name="subject" value="New job application - safe-havenhcohio.com">
-          <input type="hidden" name="from_name" value="Safe Haven Website">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <div><label for="a-name">Full name</label><input id="a-name" name="name" required autocomplete="name"></div>
-          <div><label for="a-phone">Phone</label><input id="a-phone" name="phone" type="tel" required autocomplete="tel"></div>
-          <div class="full"><label for="a-email">Email</label><input id="a-email" name="email" type="email" required autocomplete="email"></div>
-          <div class="full"><label for="a-role">Position</label>
-            <select id="a-role" name="position"><option>Direct Support Professional (DSP)</option><option>DSP with Med 1 / Med 2 certification</option><option>Personal Care Aide / STNA / HHA</option><option>Companion Caregiver</option><option>Other</option></select></div>
-          <div class="full"><label for="a-msg">Tell us about your experience and availability</label><textarea id="a-msg" name="message"></textarea></div>
-          <div class="full"><button class="btn btn-purple" type="submit">Submit Application</button></div>
-          <p class="form-status" role="status"></p>
-        </form>
+        <h3>Apply in 3 Easy Steps</h3>
+        <ol class="apply-steps">
+          <li><strong>Fill out the online application below.</strong> It takes about 10 minutes, and works on your phone.</li>
+          <li><strong>We'll call you within 24–48 hours</strong> to talk about the role and set up an interview.</li>
+          <li><strong>Interview and paid training.</strong> No experience? No problem. We'll train you.</li>
+        </ol>
+        <div class="btn-row">
+          <a class="btn btn-purple" href="#apply">Start Your Application</a>
+        </div>
+        <p class="apply-alt">Prefer paper? <a href="assets/docs/Safe-Haven-Employment-Application.pdf" target="_blank" rel="noopener">Download the printable application (PDF)</a>, then email it to <a href="mailto:info@safe-havenhc.com">info@safe-havenhc.com</a>. Questions? Call <a href="tel:+15136331447">513.633.1447</a>.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="band apply-band" id="apply">
+    <div class="wrap apply-wrap">
+      <div class="center">
+        <span class="eyebrow lined">Employment Application</span>
+        <h2>Apply <span class="gold">Online</span></h2>
+        <p class="muted">Fields marked <span class="req" aria-hidden="true">*</span> are required. Everything else is optional, so share what you can.</p>
+      </div>
+
+      <form class="app-form" id="application" action="https://api.web3forms.com/submit" method="POST" data-ajax>
+        <input type="hidden" name="access_key" value="9c87d45f-20a8-4b9b-949e-5074ef9c48b7">
+        <input type="hidden" name="subject" value="New employment application - safe-havenhcohio.com">
+        <input type="hidden" name="from_name" value="Safe Haven Website">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+
+        <!-- 1. About you -->
+        <fieldset class="app-step">
+          <legend><span class="step-num">1</span> About You</legend>
+          <div class="form">
+            <div class="full"><label for="ap-position">Position applying for <span class="req">*</span></label>
+              <select id="ap-position" name="Position" required>
+                <option value="">Choose a position…</option>
+                <option>Direct Support Professional (DSP)</option>
+                <option>DSP with Med 1 / Med 2 certification</option>
+                <option>Personal Care Aide / STNA / HHA</option>
+                <option>Companion Caregiver</option>
+                <option>Other</option>
+              </select></div>
+            <div><label for="ap-first">First name <span class="req">*</span></label><input id="ap-first" name="First name" required autocomplete="given-name"></div>
+            <div><label for="ap-last">Last name <span class="req">*</span></label><input id="ap-last" name="Last name" required autocomplete="family-name"></div>
+            <div><label for="ap-middle">Middle name</label><input id="ap-middle" name="Middle name" autocomplete="additional-name"></div>
+            <div><label for="ap-email">Email <span class="req">*</span></label><input id="ap-email" name="email" type="email" required autocomplete="email"></div>
+            <div><label for="ap-phone">Main phone <span class="req">*</span></label><input id="ap-phone" name="Main phone" type="tel" required autocomplete="tel"></div>
+            <div><label for="ap-phone2">Alternate phone</label><input id="ap-phone2" name="Alternate phone" type="tel"></div>
+            <div class="full"><label for="ap-street">Street address</label><input id="ap-street" name="Street address" autocomplete="street-address"></div>
+            <div><label for="ap-city">City <span class="req">*</span></label><input id="ap-city" name="City" required autocomplete="address-level2"></div>
+            <div class="two-up">
+              <div><label for="ap-state">State</label><input id="ap-state" name="State" value="OH" autocomplete="address-level1"></div>
+              <div><label for="ap-zip">ZIP code</label><input id="ap-zip" name="ZIP" inputmode="numeric" autocomplete="postal-code"></div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 2. Certifications -->
+        <fieldset class="app-step">
+          <legend><span class="step-num">2</span> Certifications &amp; Skills</legend>
+          <p class="hint">Check any you currently have. None yet? That's okay, because we offer paid training.</p>
+          <div class="choice-grid">
+            <label class="choice"><input type="checkbox" name="Certifications" value="CPR / First Aid"> CPR / First Aid</label>
+            <label class="choice"><input type="checkbox" name="Certifications" value="Med 1"> Medication Administration: Med 1</label>
+            <label class="choice"><input type="checkbox" name="Certifications" value="Med 2"> Medication Administration: Med 2</label>
+            <label class="choice"><input type="checkbox" name="Certifications" value="DODD DSP training"> Ohio DODD DSP training</label>
+            <label class="choice"><input type="checkbox" name="Certifications" value="STNA"> STNA</label>
+            <label class="choice"><input type="checkbox" name="Certifications" value="HHA"> Home Health Aide (HHA)</label>
+            <label class="choice"><input type="checkbox" name="Certifications" value="Valid driver's license"> Valid driver's license</label>
+          </div>
+          <div class="form">
+            <div class="full"><label for="ap-skills">Other experience, job-related skills, languages or qualifications</label><textarea id="ap-skills" name="Other experience and skills" rows="3"></textarea></div>
+          </div>
+        </fieldset>
+
+        <!-- 3. Work history -->
+        <fieldset class="app-step">
+          <legend><span class="step-num">3</span> Work History</legend>
+          <p class="hint">Start with your current or most recent job. New to the workforce? Leave this blank.</p>
+          <div id="employers"></div>
+          <button type="button" class="btn btn-outline btn-small" id="add-employer">+ Add another employer</button>
+          <div class="form app-gap">
+            <div class="full">
+              <span class="q">Have you ever been involuntarily terminated or asked to resign from any job?</span>
+              <div class="yn"><label><input type="radio" name="Ever terminated or asked to resign" value="Yes"> Yes</label><label><input type="radio" name="Ever terminated or asked to resign" value="No"> No</label></div>
+            </div>
+            <div class="full"><label for="ap-term">If yes, please explain</label><textarea id="ap-term" name="Termination explanation" rows="2"></textarea></div>
+            <div class="full"><label for="ap-gaps">Please explain any gaps in your employment history</label><textarea id="ap-gaps" name="Employment gaps" rows="2"></textarea></div>
+          </div>
+        </fieldset>
+
+        <!-- 4. Education -->
+        <fieldset class="app-step">
+          <legend><span class="step-num">4</span> Education</legend>
+          <div class="form">
+            <div><label for="ap-edu">Highest level completed</label>
+              <select id="ap-edu" name="Highest education">
+                <option value="">Choose…</option>
+                <option>Some high school</option>
+                <option>High school diploma / GED</option>
+                <option>Trade or vocational school</option>
+                <option>Some college</option>
+                <option>Associate degree</option>
+                <option>Bachelor's degree</option>
+                <option>Graduate / professional degree</option>
+              </select></div>
+            <div><label for="ap-school">School name</label><input id="ap-school" name="School name"></div>
+            <div class="full"><label for="ap-edu-more">Area of study, other schools, or specialized training</label><textarea id="ap-edu-more" name="Education details" rows="2"></textarea></div>
+          </div>
+        </fieldset>
+
+        <!-- 5. References -->
+        <fieldset class="app-step">
+          <legend><span class="step-num">5</span> References</legend>
+          <p class="hint">Three professional or personal references who know you well (not relatives, if possible).</p>
+          <div class="ref-grid">
+            <div class="ref"><span class="ref-num">Reference 1</span>
+              <input name="Reference 1 - Name and title" aria-label="Reference 1 name and title" placeholder="Name and title">
+              <input name="Reference 1 - Relationship" aria-label="Reference 1 relationship" placeholder="Relationship">
+              <input name="Reference 1 - Phone or email" aria-label="Reference 1 phone or email" placeholder="Phone or email"></div>
+            <div class="ref"><span class="ref-num">Reference 2</span>
+              <input name="Reference 2 - Name and title" aria-label="Reference 2 name and title" placeholder="Name and title">
+              <input name="Reference 2 - Relationship" aria-label="Reference 2 relationship" placeholder="Relationship">
+              <input name="Reference 2 - Phone or email" aria-label="Reference 2 phone or email" placeholder="Phone or email"></div>
+            <div class="ref"><span class="ref-num">Reference 3</span>
+              <input name="Reference 3 - Name and title" aria-label="Reference 3 name and title" placeholder="Name and title">
+              <input name="Reference 3 - Relationship" aria-label="Reference 3 relationship" placeholder="Relationship">
+              <input name="Reference 3 - Phone or email" aria-label="Reference 3 phone or email" placeholder="Phone or email"></div>
+          </div>
+        </fieldset>
+
+        <!-- 6. Availability & general -->
+        <fieldset class="app-step">
+          <legend><span class="step-num">6</span> Availability &amp; General Information</legend>
+          <div class="form">
+            <div><label for="ap-start">Date available to start</label><input id="ap-start" name="Available start date" type="date"></div>
+            <div><label for="ap-pay">Minimum pay required (per hour)</label><input id="ap-pay" name="Minimum hourly pay" inputmode="decimal" placeholder="$"></div>
+            <div class="full">
+              <span class="q">Days available to work</span>
+              <div class="chips">
+                <label><input type="checkbox" name="Days available" value="Mon"> Mon</label><label><input type="checkbox" name="Days available" value="Tue"> Tue</label><label><input type="checkbox" name="Days available" value="Wed"> Wed</label><label><input type="checkbox" name="Days available" value="Thu"> Thu</label><label><input type="checkbox" name="Days available" value="Fri"> Fri</label><label><input type="checkbox" name="Days available" value="Sat"> Sat</label><label><input type="checkbox" name="Days available" value="Sun"> Sun</label>
+              </div>
+            </div>
+            <div class="full"><label for="ap-hours">Hours available (for example, "weekdays 8am–4pm, any weekend shift")</label><input id="ap-hours" name="Hours available"></div>
+            <div class="full">
+              <span class="q">Available to work</span>
+              <div class="chips">
+                <label><input type="checkbox" name="Work type" value="Full-time"> Full-time</label><label><input type="checkbox" name="Work type" value="Part-time"> Part-time</label><label><input type="checkbox" name="Work type" value="Shift work"> Shift work</label><label><input type="checkbox" name="Work type" value="Temporary"> Temporary</label>
+              </div>
+            </div>
+          </div>
+
+          <ul class="yn-list">
+            <li><span class="q">Are you at least 18 years old? <span class="req">*</span></span>
+              <div class="yn"><label><input type="radio" name="At least 18" value="Yes" required> Yes</label><label><input type="radio" name="At least 18" value="No"> No</label></div></li>
+            <li><span class="q">If hired, can you show proof of your identity and legal right to work in the U.S.? <span class="req">*</span></span>
+              <div class="yn"><label><input type="radio" name="Legal right to work" value="Yes" required> Yes</label><label><input type="radio" name="Legal right to work" value="No"> No</label></div></li>
+            <li><span class="q">Do you have reliable transportation to and from work?</span>
+              <div class="yn"><label><input type="radio" name="Reliable transportation" value="Yes"> Yes</label><label><input type="radio" name="Reliable transportation" value="No"> No</label></div></li>
+            <li><span class="q">Can you travel if the position requires it?</span>
+              <div class="yn"><label><input type="radio" name="Can travel" value="Yes"> Yes</label><label><input type="radio" name="Can travel" value="No"> No</label></div></li>
+            <li><span class="q">Can you perform the essential functions of the job, with or without reasonable accommodation?</span>
+              <div class="yn"><label><input type="radio" name="Can perform essential functions" value="Yes"> Yes</label><label><input type="radio" name="Can perform essential functions" value="No"> No</label></div></li>
+            <li><span class="q">Have you ever used another name (including a maiden name or nickname needed to check your records)?</span>
+              <div class="yn"><label><input type="radio" name="Used another name" value="Yes"> Yes</label><label><input type="radio" name="Used another name" value="No"> No</label></div></li>
+            <li><span class="q">Have you worked for Safe Haven Home Care before?</span>
+              <div class="yn"><label><input type="radio" name="Worked here before" value="Yes"> Yes</label><label><input type="radio" name="Worked here before" value="No"> No</label></div></li>
+            <li><span class="q">Do you have friends or relatives working for Safe Haven Home Care?</span>
+              <div class="yn"><label><input type="radio" name="Friends or relatives work here" value="Yes"> Yes</label><label><input type="radio" name="Friends or relatives work here" value="No"> No</label></div></li>
+          </ul>
+          <div class="form">
+            <div class="full"><label for="ap-yes-details">If you answered "Yes" to any of the last three questions, please give details (other names, past dates and position, or names and relationships)</label><textarea id="ap-yes-details" name="Details for yes answers" rows="2"></textarea></div>
+          </div>
+          <p class="hint">We comply with the ADA and consider reasonable accommodations that qualified applicants and employees may need to perform essential job functions.</p>
+        </fieldset>
+
+        <!-- 7. Agreement & signature -->
+        <fieldset class="app-step">
+          <legend><span class="step-num">7</span> Applicant Statement &amp; Signature</legend>
+          <p class="hint">Please read and check each statement. If there's anything you don't understand, call us at <a href="tel:+15136331447">513.633.1447</a>.</p>
+          <div class="agree-list">
+            <label class="agree"><input type="checkbox" name="Agreed - Background and reference check" value="Agreed" required> <span>I authorize Safe Haven Home Care to thoroughly investigate my references, work record, education and other matters related to my suitability for employment, and I authorize the prior employers and references I have listed to disclose to the Company any letters, reports and other information related to my work records, without giving me prior notice. I release the Company, my former employers and all other persons and organizations from any claims or liabilities arising out of or related to such investigation or disclosure.</span></label>
+            <label class="agree"><input type="checkbox" name="Agreed - Company rules" value="Agreed" required> <span>If employed, I understand that I am required to comply with all rules and regulations of the Company.</span></label>
+            <label class="agree"><input type="checkbox" name="Agreed - At-will employment" value="Agreed" required> <span>If hired, I understand and agree that my employment is at-will, and that neither I nor the Company is required to continue the employment relationship for any specific term. Either the Company or I may end the employment relationship at any time, with or without cause and with or without notice. I understand that the at-will status of my employment cannot be changed by any oral statement.</span></label>
+            <label class="agree"><input type="checkbox" name="Agreed - Safety" value="Agreed" required> <span>I understand that employee safety is extremely important to the Company. I have a responsibility to prevent accidents and injuries by following all safety procedures and guidelines and the directions of my supervisor, and I agree to comply with federal, state and local on-the-job safety and health regulations.</span></label>
+            <label class="agree"><input type="checkbox" name="Agreed - Truthful answers" value="Agreed" required> <span>I certify that my answers are true and correct to the best of my knowledge, and that I personally completed this application. I understand that any omission or misstatement of material fact on this application, or on any document used to secure employment, is grounds for rejecting this application or for immediate discharge if I am employed, regardless of when it is discovered.</span></label>
+            <label class="agree"><input type="checkbox" name="Agreed - Identity and I-9" value="Agreed" required> <span>I understand that if I am selected for hire, I must provide satisfactory evidence of my identity and legal authority to work in the United States, and that federal immigration law requires me to complete Form I-9.</span></label>
+            <label class="agree"><input type="checkbox" name="Agreed - Severability" value="Agreed" required> <span>I understand that if any part of this agreement is found void or unenforceable, it will be removed and the rest of the agreement will remain enforceable.</span></label>
+          </div>
+          <div class="form app-gap">
+            <div><label for="ap-sign">Type your full legal name to sign <span class="req">*</span></label><input id="ap-sign" name="Electronic signature" required autocomplete="name"></div>
+            <div><label for="ap-date">Date</label><input id="ap-date" name="Date signed" readonly></div>
+            <label class="agree full"><input type="checkbox" name="Agreed - Electronic signature" value="Agreed" required> <span>I have read, understand and agree to all of the above. I agree that typing my name above is my electronic signature and has the same effect as signing by hand.</span></label>
+          </div>
+        </fieldset>
+
+        <p class="eeo">All applicants are considered for all positions without regard to race, religion, color, sex, gender, sexual orientation, pregnancy, age, national origin, ancestry, physical or mental disability, medical condition, military or veteran status, genetic information, marital status, ethnicity or any other protected classification, in accordance with applicable federal, state and local laws. Applicants who need an accommodation to complete the application or interview process should call <a href="tel:+15136331447">513.633.1447</a>.</p>
+
+        <div class="app-submit">
+          <button class="btn btn-purple" type="submit">Submit Application</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <template id="employer-tpl">
+        <div class="employer" data-n="{n}">
+          <div class="employer-head"><span class="ref-num">Employer {n}</span><button type="button" class="link-btn remove-employer" aria-label="Remove employer {n}">Remove</button></div>
+          <div class="form">
+            <div><label for="emp{n}-name">Employer name</label><input id="emp{n}-name" name="Employer {n} - Name"></div>
+            <div><label for="emp{n}-title">Job title</label><input id="emp{n}-title" name="Employer {n} - Job title"></div>
+            <div><label for="emp{n}-sup">Supervisor</label><input id="emp{n}-sup" name="Employer {n} - Supervisor"></div>
+            <div><label for="emp{n}-phone">Phone</label><input id="emp{n}-phone" name="Employer {n} - Phone" type="tel"></div>
+            <div class="full"><label for="emp{n}-addr">Address</label><input id="emp{n}-addr" name="Employer {n} - Address"></div>
+            <div class="two-up">
+              <div><label for="emp{n}-from">From</label><input id="emp{n}-from" name="Employer {n} - From" type="month"></div>
+              <div><label for="emp{n}-to">To</label><input id="emp{n}-to" name="Employer {n} - To" type="month"></div>
+            </div>
+            <div>
+              <span class="q">May we contact this employer?</span>
+              <div class="yn"><label><input type="radio" name="Employer {n} - May we contact" value="Yes"> Yes</label><label><input type="radio" name="Employer {n} - May we contact" value="No"> No</label></div>
+            </div>
+            <div class="full"><label for="emp{n}-duties">Duties</label><textarea id="emp{n}-duties" name="Employer {n} - Duties" rows="2"></textarea></div>
+            <div class="full"><label for="emp{n}-why">Reason for leaving</label><input id="emp{n}-why" name="Employer {n} - Reason for leaving"></div>
+          </div>
+        </div>
+      </template>
     </div>
   </section>
 </main>
@@ -141,6 +351,7 @@
 </footer>
 <script src="assets/js/theme.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/apply.js"></script>
 <script src="assets/js/motion.js"></script>
 </body>
 </html>

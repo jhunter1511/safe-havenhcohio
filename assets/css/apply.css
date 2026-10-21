@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Safe Haven — online employment application (careers.html only)
+   Uses the site's color tokens, so light and dark mode both work.
+   ========================================================================== */
+
+/* "Apply in 3 easy steps" panel */
+.apply-steps { margin: 6px 0 22px; padding-left: 1.3em; }
+.apply-steps li { margin-bottom: 10px; color: var(--muted); }
+.apply-steps strong { color: var(--text); font-weight: 500; }
+.panel .apply-alt { margin-top: 18px; font-size: .92rem; }
+.apply-alt a, .app-form .hint a, .eeo a { color: var(--gold); }
+
+/* Application section */
+.apply-band { border-top: 1px solid var(--line); }
+.apply-wrap { max-width: 900px; }
+.apply-wrap > .center p { margin-top: 0; }
+.req { color: var(--gold); }
+
+.app-form { margin-top: 36px; }
+.app-step {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--ink-3); padding: 26px 28px 28px; margin: 0 0 24px; min-width: 0;
+}
+.app-step legend {
+  font-family: var(--serif); font-size: 1.55rem; font-weight: 600; color: var(--text);
+  padding: 0 10px; margin-left: -10px; display: flex; align-items: center; gap: 12px;
+}
+.step-num {
+  width: 34px; height: 34px; border-radius: 50%; flex: none;
+  display: inline-grid; place-items: center;
+  background: var(--purple); color: #fff; border: 1.5px solid var(--gold);
+  font-family: var(--body); font-size: 1rem; font-weight: 500;
+}
+.app-step .hint { color: var(--muted); font-size: .93rem; margin: 4px 0 18px; }
+.app-step > .form + .hint { margin: 18px 0 0; }
+.app-form .form textarea { min-height: 0; }
+.app-gap { margin-top: 22px; }
+.two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+/* Let grid cells and inputs shrink on narrow screens (month pickers have a wide built-in minimum). */
+.app-form .form > *, .two-up > * { min-width: 0; }
+.app-form input, .app-form select, .app-form textarea { min-width: 0; max-width: 100%; }
+
+/* Question text above yes/no and chip groups */
+.app-form .q { display: block; font-size: .95rem; color: var(--text); margin-bottom: 8px; }
+
+/* Yes / No pills */
+.yn { display: flex; gap: 10px; flex-wrap: wrap; }
+.yn label, .chips label {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line);
+  font-size: .95rem; color: var(--text); margin: 0; letter-spacing: 0;
+  transition: border-color .2s, background .2s;
+}
+.yn label:hover, .chips label:hover { border-color: var(--gold); }
+.yn label:has(input:checked), .chips label:has(input:checked) { border-color: var(--gold); background: rgba(214, 168, 78, .14); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.app-form input[type="radio"], .app-form input[type="checkbox"] {
+  width: 18px; height: 18px; padding: 0; margin: 0; flex: none; accent-color: var(--purple-2);
+}
+
+.yn-list { list-style: none; padding: 0; margin: 24px 0 20px; }
+.yn-list li {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap;
+  padding: 14px 0; border-top: 1px solid var(--line);
+}
+.yn-list li:last-child { border-bottom: 1px solid var(--line); }
+.yn-list .q { margin: 0; flex: 1 1 320px; }
+
+/* Certification checkboxes */
+.choice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 18px; margin-bottom: 20px; }
+.choice { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: .97rem; cursor: pointer; }
+
+/* Work history blocks */
+.employer { border: 1px dashed var(--line); border-radius: 12px; padding: 18px 18px 20px; margin-bottom: 16px; }
+.employer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.ref-num { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.link-btn { background: none; border: 0; padding: 4px; color: var(--muted); font: inherit; font-size: .9rem; text-decoration: underline; cursor: pointer; }
+.link-btn:hover { color: var(--gold); }
+.employer:only-child .remove-employer { display: none; }
+.btn-small { padding: 9px 20px; font-size: .95rem; }
+.btn-small::after { content: none; }
+
+/* References */
+.ref-grid { display: grid; gap: 16px; }
+.ref { display: grid; grid-template-columns: 1.3fr 1fr 1.2fr; gap: 10px; align-items: end; }
+.ref .ref-num { grid-column: 1 / -1; }
+.ref input {
+  width: 100%; padding: 12px 14px; border-radius: 10px; font: inherit; font-size: 1rem;
+  background: #0a080c; color: var(--text); border: 1px solid rgba(214, 168, 78, .3);
+}
+.ref input:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: transparent; }
+
+/* Agreement statements */
+.agree-list { display: grid; gap: 12px; }
+.agree {
+  display: flex; gap: 14px; align-items: flex-start; cursor: pointer;
+  padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px;
+  color: var(--muted); font-size: .93rem; line-height: 1.55; margin: 0; letter-spacing: 0;
+}
+.agree input { margin-top: 3px; }
+.agree:has(input:checked) { border-color: var(--gold); color: var(--text); }
+.form .agree { font-size: .93rem; color: var(--muted); }
+.app-form input[readonly] { opacity: .75; }
+
+.eeo { color: var(--muted); font-size: .85rem; line-height: 1.55; margin: 8px 0 26px; }
+.app-submit { display: grid; justify-items: start; gap: 12px; }
+.app-submit .form-status { font-size: 1rem; }
+
+/* Light mode */
+[data-theme="light"] .app-step { box-shadow: 0 10px 28px rgba(60, 40, 20, .06); }
+[data-theme="light"] .ref input { background: #fff; border-color: rgba(138, 94, 23, .35); }
+[data-theme="light"] .yn label:has(input:checked),
+[data-theme="light"] .chips label:has(input:checked) { background: rgba(123, 83, 19, .1); }
+
+/* Phones */
+@media (max-width: 600px) {
+  .app-step { padding: 20px 16px 22px; }
+  .app-step legend { font-size: 1.3rem; }
+  .choice-grid, .ref { grid-template-columns: 1fr; }
+  .employer { padding: 14px 12px 16px; }
+  .employer .two-up { grid-template-columns: 1fr; }
+}

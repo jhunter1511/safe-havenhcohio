@@ -13,8 +13,20 @@ document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new D
 
 // Forms: submit to Web3Forms via fetch, show inline status.
 // Only report success when Web3Forms confirms it ({"success": true}).
+// Fields are sent as JSON: blank fields are left out so the email stays short,
+// and checkbox groups that share a name (e.g. "Days available") are joined.
+function formToJSON(form) {
+  const out = {};
+  for (const [key, value] of new FormData(form)) {
+    if (typeof value !== "string" || value.trim() === "") continue;
+    out[key] = key in out ? `${out[key]}, ${value}` : value;
+  }
+  return out;
+}
+
 document.querySelectorAll("form[data-ajax]").forEach((form) => {
   const status = form.querySelector(".form-status");
+  const button = form.querySelector('button[type="submit"]');
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (form.querySelector('[name="access_key"]')?.value === "WEB3FORMS_ACCESS_KEY") {
@@ -22,18 +34,21 @@ document.querySelectorAll("form[data-ajax]").forEach((form) => {
       return;
     }
     status.textContent = "Sending…";
+    if (button) button.disabled = true;
     try {
       const res = await fetch(form.action, {
         method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(formToJSON(form)),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.success) throw new Error(data.message);
       form.reset();
       status.textContent = "Thank you! A member of our team will get back to you within 24–48 hours. For urgent needs, please call 513.633.1447.";
     } catch {
-      status.textContent = "Something went wrong. Please call us or try again.";
+      status.textContent = "Something went wrong. Please call us at 513.633.1447 or try again.";
+    } finally {
+      if (button) button.disabled = false;
     }
   });
 });
