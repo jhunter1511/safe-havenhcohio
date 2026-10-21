@@ -13,7 +13,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  @page { size: letter; margin: 0.55in 0.6in 0.6in; }
+  @page {
+    size: letter; margin: 0.55in 0.6in 0.7in;
+    /* Running footer in the bottom page margin (its own space, so it never overlaps content). */
+    @bottom-left  { content: "Safe Haven Home Care · Employment Application"; font-family: "Lora", Georgia, serif; font-size: 7.2pt; color: #6a6070; vertical-align: top; padding-top: 10pt; }
+    @bottom-right { content: "safe-havenhcohio.com · 513.633.1447 · Page " counter(page) " of " counter(pages); font-family: "Lora", Georgia, serif; font-size: 7.2pt; color: #6a6070; vertical-align: top; padding-top: 10pt; }
+  }
   * { box-sizing: border-box; }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body { margin: 0; font-family: "Lora", Georgia, serif; font-size: 9.6pt; line-height: 1.38; color: #1d1622; }
@@ -56,12 +61,10 @@
   .sig span { font-size: 7.6pt; text-transform: uppercase; letter-spacing: .05em; color: #4a4150; }
   .eeo { font-size: 7.8pt; color: #4a4150; margin-top: 12pt; border-top: .75pt solid var(--line); padding-top: 6pt; }
   .pb { break-before: page; }
-  footer { position: fixed; bottom: -0.38in; left: 0; right: 0; font-size: 7.2pt; color: #6a6070; display: flex; justify-content: space-between; }
 </style>
 </head>
 <body>
 
-<footer><span>Safe Haven Home Care · Employment Application</span><span>safe-havenhcohio.com · 513.633.1447</span></footer>
 
 <header>
   <div>
@@ -89,7 +92,7 @@
 
 <h2>Certifications &amp; Skills</h2>
 <p class="note">Check any you currently have. None yet? That's okay, because we offer paid training.</p>
-<p><span class="box"></span>CPR / First Aid <span class="box"></span>Med 1 <span class="box"></span>Med 2 <span class="box"></span>Ohio DODD DSP training <span class="box"></span>STNA <span class="box"></span>HHA <span class="box"></span>Valid driver's license</p>
+<p><span class="box"></span>CPR / First Aid <span class="box"></span>Med 1 <span class="box"></span>Med 2 <span class="box"></span>Ohio DODD DSP training <span class="box"></span>STNA <span class="box"></span>HHA</p>
 <table><tr><td><span class="cap">Other experience, job-related skills, languages or qualifications</span><div class="fill-tall"></div></td></tr></table>
 
 <h2>Employment Experience</h2>
@@ -151,6 +154,8 @@
   <tr><td>Are you at least 18 years old?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
   <tr><td>If hired, can you present evidence of your identity and legal right to work in the United States?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
   <tr><td>If hired, would you have reliable transportation to and from work?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
+  <tr><td>Do you have a valid driver's license?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
+  <tr><td>Do you have current auto insurance?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
   <tr><td>Can you travel if the position requires it?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
   <tr><td>Are you able to perform the essential functions of the job for which you are applying, with or without reasonable accommodation?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
   <tr><td>Have you ever used another name (including a maiden name or nickname needed to check your work and education records)?</td><td><span class="box"></span>Yes <span class="box"></span>No</td></tr>
