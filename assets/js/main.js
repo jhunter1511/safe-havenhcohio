@@ -13,10 +13,9 @@ document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new D
 
 // Forms: submit to Web3Forms via fetch, show inline status.
 // Only report success when Web3Forms confirms it ({"success": true}).
-// Fields are sent as regular form data (NOT JSON: Web3Forms answered JSON posts
-// with "success" but never delivered the emails). Blank fields are left out so the
-// email stays short, and checkbox groups that share a name (e.g. "Days available")
-// are joined into one line.
+// Fields are sent as regular form data (Web3Forms' standard method). Blank fields
+// are left out so the email stays short, and checkbox groups that share a name
+// (e.g. "Days available") are joined into one line.
 function cleanFormData(form) {
   const merged = new Map();
   for (const [key, value] of new FormData(form)) {
