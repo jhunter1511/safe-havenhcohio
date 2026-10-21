@@ -290,3 +290,18 @@ section { position: relative; }
 .cards.three { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 1040px) { .cards.three { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .cards.three { grid-template-columns: 1fr; } }
+
+/* Form letterhead: the full-color logo on a white strip at the top of every form.
+   The purple logo needs a light background, so it stays white in both themes. */
+.form-letterhead {
+  background: #fff; color: #241a2e; text-align: center;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px 20px 14px; margin: 0 0 24px;
+}
+.form-letterhead img { display: block; height: 74px; width: auto; max-width: 100%; margin: 0 auto; }
+.form-letterhead .lh-tag { margin: 8px 0 0; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: #7b5313; }
+.form-letterhead .lh-title {
+  margin: 10px 0 0; padding-top: 10px; border-top: 1px solid rgba(138, 94, 23, .3);
+  font-family: var(--serif); font-size: 1.45rem; font-weight: 600; line-height: 1.2; color: #2a0d40;
+}
+@media (max-width: 600px) { .form-letterhead img { height: 56px; } .form-letterhead .lh-tag { font-size: .62rem; letter-spacing: .12em; } }

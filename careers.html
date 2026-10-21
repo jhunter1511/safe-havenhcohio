@@ -85,6 +85,8 @@
           <li>DSPs with Med 1 and Med 2 certification</li>
           <li>Personal Care Aides, STNAs and Home Health Aides</li>
           <li>Companion Caregivers for seniors and post-surgery clients</li>
+          <li>House Leads to support and guide our DSP teams</li>
+          <li>Office Administrators and Office Managers</li>
           <li>Reliable transportation and a caring heart</li>
         </ul>
       </div>
@@ -117,6 +119,12 @@
         <input type="hidden" name="from_name" value="Safe Haven Website">
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
 
+        <div class="form-letterhead">
+          <img src="assets/img/logo-mark.svg" alt="Safe Haven Home Care" width="702" height="179">
+          <p class="lh-tag">Supporting Independence &amp; Enriching Lives</p>
+          <p class="lh-title">Employment Application</p>
+        </div>
+
         <!-- 1. About you -->
         <fieldset class="app-step">
           <legend><span class="step-num">1</span> About You</legend>
@@ -124,12 +132,20 @@
             <div class="full"><label for="ap-position">Position applying for <span class="req">*</span></label>
               <select id="ap-position" name="Position" required>
                 <option value="">Choose a position…</option>
-                <option>Direct Support Professional (DSP)</option>
-                <option>DSP with Med 1 / Med 2 certification</option>
-                <option>Personal Care Aide / STNA / HHA</option>
-                <option>Companion Caregiver</option>
-                <option>Other</option>
+                <optgroup label="Direct care">
+                  <option>Direct Support Professional (DSP)</option>
+                  <option>DSP with Med 1 / Med 2 certification</option>
+                  <option>House Lead</option>
+                  <option>Personal Care Aide / STNA / HHA</option>
+                  <option>Companion Caregiver</option>
+                </optgroup>
+                <optgroup label="Office">
+                  <option>Office Administrator</option>
+                  <option>Office Manager</option>
+                </optgroup>
+                <option value="Other">Other (tell us which position)</option>
               </select></div>
+            <div class="full" id="ap-position-other-wrap" hidden><label for="ap-position-other">Which position are you applying for? <span class="req">*</span></label><input id="ap-position-other" name="Other position"></div>
             <div><label for="ap-first">First name <span class="req">*</span></label><input id="ap-first" name="First name" required autocomplete="given-name"></div>
             <div><label for="ap-last">Last name <span class="req">*</span></label><input id="ap-last" name="Last name" required autocomplete="family-name"></div>
             <div><label for="ap-middle">Middle name</label><input id="ap-middle" name="Middle name" autocomplete="additional-name"></div>

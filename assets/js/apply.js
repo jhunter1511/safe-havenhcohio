@@ -50,6 +50,18 @@
   addEmployer();
   addEmployer();
 
+  // "Other" position: show a required box asking which position.
+  const position = document.getElementById("ap-position");
+  const otherWrap = document.getElementById("ap-position-other-wrap");
+  const otherInput = document.getElementById("ap-position-other");
+  function syncOther() {
+    const isOther = position?.value === "Other";
+    if (otherWrap) otherWrap.hidden = !isOther;
+    if (otherInput) { otherInput.required = isOther; if (!isOther) otherInput.value = ""; }
+  }
+  position?.addEventListener("change", () => { syncOther(); if (position.value === "Other") otherInput?.focus(); });
+  syncOther();
+
   // Signature date (readonly, filled in for the applicant).
   const date = document.getElementById("ap-date");
   if (date) date.value = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
@@ -61,6 +73,7 @@
       addEmployer();
       addEmployer();
       if (date) date.value = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      syncOther();
     });
   });
 })();
