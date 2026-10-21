@@ -89,9 +89,11 @@
       </div>
       <div class="panel">
         <h3>Apply Now</h3>
-        <!-- TODO: replace YOUR_FORM_ID with a Formspree (or similar) form ID so submissions reach your inbox -->
-        <form class="form" action="https://formspree.io/f/xjykdpzp" method="POST" data-ajax>
-          <input type="hidden" name="_subject" value="New job application - safe-havenhcohio.com">
+        <form class="form" action="https://api.web3forms.com/submit" method="POST" data-ajax>
+          <input type="hidden" name="access_key" value="9c87d45f-20a8-4b9b-949e-5074ef9c48b7">
+          <input type="hidden" name="subject" value="New job application - safe-havenhcohio.com">
+          <input type="hidden" name="from_name" value="Safe Haven Website">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <div><label for="a-name">Full name</label><input id="a-name" name="name" required autocomplete="name"></div>
           <div><label for="a-phone">Phone</label><input id="a-phone" name="phone" type="tel" required autocomplete="tel"></div>
           <div class="full"><label for="a-email">Email</label><input id="a-email" name="email" type="email" required autocomplete="email"></div>

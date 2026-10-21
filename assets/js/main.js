@@ -11,12 +11,13 @@ if (toggle && nav) {
 // Footer year
 document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
-// Forms: submit to the form's action (e.g. Formspree) via fetch, show inline status.
+// Forms: submit to Web3Forms via fetch, show inline status.
+// Only report success when Web3Forms confirms it ({"success": true}).
 document.querySelectorAll("form[data-ajax]").forEach((form) => {
   const status = form.querySelector(".form-status");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (form.action.includes("YOUR_FORM_ID")) {
+    if (form.querySelector('[name="access_key"]')?.value === "WEB3FORMS_ACCESS_KEY") {
       status.textContent = "Form not connected yet — please call us at 513.633.1447 for now.";
       return;
     }
@@ -27,7 +28,8 @@ document.querySelectorAll("form[data-ajax]").forEach((form) => {
         body: new FormData(form),
         headers: { Accept: "application/json" },
       });
-      if (!res.ok) throw new Error();
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) throw new Error(data.message);
       form.reset();
       status.textContent = "Thank you! A member of our team will get back to you within 24–48 hours. For urgent needs, please call 513.633.1447.";
     } catch {
